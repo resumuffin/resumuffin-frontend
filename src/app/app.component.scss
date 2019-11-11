@@ -1,0 +1,65 @@
+html, body{
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+}
+
+header{
+    height: 10%;
+}
+
+#navBar{
+    height: 10%;
+    margin: 0 auto;
+    vertical-align: middle;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    background-color: lightcoral;
+}
+
+#title{
+    width: 25%;
+    display:inline-block;
+    height: 10px;
+    font-size: 300%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90%;
+}
+
+#navButtons{
+    width: 25%;
+    height: auto;
+    display:inline-block;
+    text-align: center;
+}
+
+#search{
+    text-align: center;
+    width: 50%;
+    height: 100%;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#searchBar{
+    width:75%;
+    height:75%;
+}
+
+.spacer{
+    width:15px;
+    height:auto;
+    display:inline-block;
+}
+
+.navButton{
+    width: 29%;
+    padding: 5%;
+    margin: 0 auto;
+}

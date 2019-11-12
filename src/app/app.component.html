@@ -1,26 +1,29 @@
 <!DOCTYPE html>
 <html>
-  <head>
 
-  </head>
-  <body>
-    <header id="navBar">
-        <div id="title">
-          Resumuffin
-        </div>
-        <div id="search">
-          <input type="text" id="searchBar">
-        </div>
-        <div id="navButtons">
-          <button id="login" class="navButton">Login</button>
-          <div class="spacer"></div>
-          <button id="post" class="navButton">Post</button>
-          <div class="spacer"></div>
-          <button id="help" class="navButton">Help</button>
-        </div>
-      </header>
-    <div>
-      <router-outlet></router-outlet>
+<head>
+
+</head>
+
+<body>
+  <header id="navBar">
+    <div id="title">
+      Resumuffin
     </div>
-  </body>
+    <div id="search">
+      <input type="text" id="searchBar" placeholder="Search">
+    </div>
+    <div id="navButtons">
+      <button id="login" class="navButton">Login</button>
+      <div class="spacer"></div>
+      <button id="post" class="navButton">Post</button>
+      <div class="spacer"></div>
+      <button id="help" class="navButton">Help</button>
+    </div>
+  </header>
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+</body>
+
 </html>

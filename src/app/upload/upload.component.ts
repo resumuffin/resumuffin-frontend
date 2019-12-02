@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-upload',
@@ -7,28 +9,38 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UploadComponent implements OnInit {
 
-  constructor() { }
+  constructor(private formBuilder: FormBuilder, private http: HttpClient) { }
 
-  url: string | ArrayBuffer;
-
+  uploadForm: FormGroup;  
+  springUrl = "http://class-a.hekiyou.academy:9917/resume/upload";
   isVisible = false;
-  
-  onSelectFile(event) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
-
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
-
-      reader.onload = (event) => { // called once readAsDataURL is completed
-        this.url = event.target.result;
-      }
-
-      this.isVisible = true;
-
-    }
-  }
 
   ngOnInit() {
+    this.uploadForm = this.formBuilder.group({
+      resume: ['']
+    });
+  }
+
+  onSubmit(){
+    const formData = new FormData();
+    formData.append('file', this.uploadForm.get('resume').value);
+    var tags = "2,5,7";
+    formData.append('tags', tags);
+
+    this.http.post<any>(this.springUrl, formData).subscribe(
+      (res) => console.log(res),
+      (err) => console.log(err)
+    );
+  }
+  
+  onSelectFile(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      console.log(this.uploadForm.get("resume"));
+      this.uploadForm.get("resume").setValue(file);
+    }
+
+    this.isVisible = true;
   }
 
 }

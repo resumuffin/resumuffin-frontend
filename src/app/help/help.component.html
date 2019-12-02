@@ -1,0 +1,48 @@
+
+<body>
+  <br>
+  <div class="col-xl-2">
+      <div class="card mx-auto bar left">
+        <div class="card-header">
+          Resumuffin
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Home</li>
+          <li class="list-group-item">Tags</li>
+          <li class="list-group-item">Users</li>
+          <li class="list-group-item">Jobs</li>
+        </ul>
+      </div>
+  </div>
+  <div id="bodyDiv">
+      <div class="topic">
+        <h2>How do I upload a resumé?</h2>
+        <hr>
+        <span>In order to upload a resumé for other users to see, you must be logged in. Once logged in, click "Post" on the navigation bar, and you will be taken to a page to upload a resumé file from your computer. Once a file is selected, you will be able to add a post title and tags to make your upload findable by a search.</span>
+      </div>
+      <br>
+      <div class="topic">
+        <h2>What do the tags do?</h2>
+        <hr>
+        <span>Tags allow your resumé to be searchable by other users who want to provide feedback on your resumé. Tags should specify information about your resumé and the positions you will be using it to apply for. For example, if you were searching for full stack developer jobs for a new graduate, example tags could include: "Computer Science", "Full Stack", "Full Time", "New Grad".</span>
+      </div>
+      <br>
+      <div class="topic">
+        <h2>How do I review a resumé?</h2>
+        <hr>
+        <span>You can use the search bar to search for resumés that you want to review. For example, if you want to search for a Computer Science resumé, simply search for "Computer Science" in the search bar and you will be presented with a list of resumés that meet the search criteria. From there, if you click on the resumé you wish to view to be taken to a page with a better view of the resumé, and comments from other users. From there, if you are logged in, you will be presented with the option to post a comment on that resumé.</span>
+      </div>
+  </div>
+  <br>
+  <br>
+  <div id="resumeDisplay">
+    <br>
+      <button id="getResume"  (click)="getFunc()">Get Resume</button>
+    <br>
+    <pdf-viewer #pdfViewer [src]="pdfSrc" [render-text]="true" style="display: block; border: 1px solid black"></pdf-viewer>
+    <br>
+  </div>
+  <br>
+  <br>
+</body>
+  

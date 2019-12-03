@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { stringify } from 'querystring';
 
 @Component({
   selector: 'app-upload',
@@ -21,10 +22,10 @@ export class UploadComponent implements OnInit {
     });
   }
 
-  onSubmit(){
+  onSubmit(event: any){
     const formData = new FormData();
     formData.append('file', this.uploadForm.get('resume').value);
-    var tags = "2,5,7";
+    var tags = event.target.tags.value;
     formData.append('tags', tags);
 
     this.http.post<any>(this.springUrl, formData).subscribe(
@@ -36,7 +37,7 @@ export class UploadComponent implements OnInit {
   onSelectFile(event) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
-      console.log(this.uploadForm.get("resume"));
+      //console.log(this.uploadForm.get("resume"));
       this.uploadForm.get("resume").setValue(file);
     }
 

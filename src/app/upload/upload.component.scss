@@ -61,3 +61,17 @@ html, body{
     height:auto;
     display:inline-block;
 }
+
+button {
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+  }
+  
+.left {
+margin-top: 1%;
+position: fixed;
+}

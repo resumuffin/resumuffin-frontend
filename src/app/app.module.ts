@@ -1,9 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule,  HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -13,6 +12,9 @@ import { LoginComponent } from './login/login.component';
 import { ResultsComponent } from './results/results.component';
 import { TagsComponent } from './tags/tags.component';
 import { UsersComponent } from './users/users.component';
+import { RegisterComponent } from './register/register.component';
+
+
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { UsersComponent } from './users/users.component';
     LoginComponent,
     ResultsComponent,
     TagsComponent,
-    UsersComponent
+    UsersComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +37,8 @@ import { UsersComponent } from './users/users.component';
     ReactiveFormsModule,
     PdfViewerModule
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

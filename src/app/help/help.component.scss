@@ -42,3 +42,17 @@ hr{
     width: 100%;
     border: 1px solid green;
 }
+
+button {
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+  }
+  
+.left {
+    margin-top: 1%;
+    position: fixed;
+}

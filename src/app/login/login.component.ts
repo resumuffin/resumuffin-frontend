@@ -44,6 +44,15 @@ export class LoginComponent implements OnInit {
         }
 
         this.loading = true;
-
     }
+}
+
+function userValidator(g: FormGroup) {
+  if(g.get('username').value){
+    if (g.get('password').value === null){
+      
+    }
+  }
+  return g.get('password').value === g.get('passwordConfirm').value
+     ? null : {'mismatch': true};
 }

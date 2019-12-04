@@ -10,9 +10,7 @@
         <li class="list-group-item"><button routerLink="/users">Users</button></li>
       </ul>
     </div>
-  </div>
-  <br>
-  <form [formGroup]="uploadForm" (ngSubmit)="onSubmit()">
+  <form [formGroup] = "uploadForm" (ngSubmit)="onSubmit($event)">     
     <div id="bodyDiv">
       <div id="titleDiv">
         <h1 id="title">Upload a Resumé</h1>
@@ -24,7 +22,6 @@
         <input name="resume" type="file" (change)="onSelectFile($event)">
         <br>
         <br>
-        <button type="submit" class="btn btn-info">Upload Resumé</button>
         <br>
         <br>
         <div id="infoPrompt" [style.display]="isVisible ? 'flex' : 'none'">
@@ -32,26 +29,27 @@
         </div>
       </div>
     </div>
-  </form>
-  <br>
-  <div id="hiddenDiv" [style.display]="isVisible ? 'flex' : 'none'">
-    <div id="infoDiv">
-      <span id="tagsPrompt">Add tags describing your resumé and desired in the box below, separated by commas. Example
-        tags: "Computer Science", "Entry Level", "Full Stack".</span>
-      <br>
-      <input type="text" id="tags">
-      <br><br>
-      <span id="descPrompt">Describe what aspect of your resumé you want users to comment on such as "Please check my
-        grammar", "How should I list my experience?" or "How do I make my projects stand out?".</span>
-      <br>
-      <textarea id="desc" rows="3"></textarea>
-      <br>
-      <br>
-      <div id="buttons">
-        <button class="btn btn-success" id="upload">Upload</button>
-        <div class="spacer"></div>
-        <button class="btn btn-danger" id="cancel">Cancel</button>
+
+    <br>
+    <div id="hiddenDiv" [style.display]="isVisible ? 'flex' : 'none'">
+      <div id="infoDiv">
+        <span id="tagsPrompt">Add tags describing your resumé and desired in the box below, separated by commas. Example tags: Computer Science, Entry Level, Full Stack.</span>
+        <br>
+        <input type="text" id="tags" name="tags">
+        <br><br>
+        <span id="descPrompt">Describe what aspect of your resumé you want users to comment on such as "Please check my grammar", "How should I list my experience?" or "How do I make my projects stand out?".</span>
+        <br>
+        <textarea id="desc" rows="3"></textarea>
+        <br>
+        <br>
+        <div id="buttons">
+            <button class="btn btn-success" id="upload" type="submit">Upload</button>
+            <div class="spacer"></div>
+            <button class="btn btn-danger" id="cancel">Cancel</button>
+        </div>
       </div>
     </div>
-  </div>
+    <br>
+    <br>
+  </form>
 </body>

@@ -9,16 +9,25 @@ import { HttpClient } from '@angular/common/http';
 export class HelpComponent implements OnInit {
 
   constructor(private http: HttpClient) { }
+
+  ngOnInit() {
+  }
+
+}
+
+/*
+
+// component.ts
+
   pdfSrc = "";
+
   getFunc(){
     var url = "http://class-a.hekiyou.academy:9917/resume/get/2";
-    var data;
-    var img = new Image();
     
     this.http.get<any>(url).subscribe((res)=>{
-      console.log(res);
       if (res.image)
       {
+        var img = new Image();
         img.src = "data:image/png;base64,";
         img.src += res.data;
         document.body.appendChild(img);
@@ -27,15 +36,20 @@ export class HelpComponent implements OnInit {
       {
         this.pdfSrc = "data:application/pdf;base64,";
         this.pdfSrc += res.data;
-        //this.pdfSrc = "https://vadimdez.github.io/ng2-pdf-viewer/pdf-test.pdf";
-        //console.log(pdfSrc);
       }
       
     });
 
   }
 
-  ngOnInit() {
-  }
+// component.html
 
-}
+<div id="resumeDisplay">
+  <br>
+    <button id="getResume"  (click)="getFunc()">Get Resume</button>
+  <br>
+  <pdf-viewer #pdfViewer [src]="pdfSrc" [render-text]="true" style="display: block; border: 1px solid black"></pdf-viewer>
+  <br>
+</div>
+
+*/

@@ -17,6 +17,7 @@ export class UploadComponent implements OnInit {
   isVisible = false;
 
   ngOnInit() {
+    console.log(window.location.href );
     this.uploadForm = this.formBuilder.group({
       resume: ['']
     });

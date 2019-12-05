@@ -13,7 +13,19 @@
     </div>
     <div class="col-xl-4 mx-auto featured">
       <div class="center">
-        <h1>{{resumeId}}</h1>   
+        <h1>Resume ID: {{resumeId}}</h1>   
+        <div id="resumeDiv1" [style.display]="image ? 'flex' : 'none'">
+          It's an image
+          <img src={{resSrc}}>
+        </div>
+        <div id="resumeDiv2" [style.display]="image ? 'none' : 'flex'">
+          <div id="resumeDisplay">
+            <pdf-viewer #pdfViewer [autoresize]="true" [src]="resSrc" [render-text]="true" [original-size]="false" style="display: block; border: 1px solid black; width: 100%;"></pdf-viewer>
+          </div>
+        </div>
+        <hr>
+        <h3>Comments</h3>
+        <br>
       </div>
     </div>   
   </body>

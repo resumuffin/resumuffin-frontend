@@ -14,6 +14,7 @@ export class ResultsComponent implements OnInit {
 
     var id = event.target.text;
     this.resumeService.setId(id);
+    localStorage.setItem("id", id);
 
   }
 

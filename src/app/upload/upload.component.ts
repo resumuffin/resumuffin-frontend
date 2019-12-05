@@ -38,7 +38,6 @@ export class UploadComponent implements OnInit {
   onSelectFile(event) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
-      //console.log(this.uploadForm.get("resume"));
       this.uploadForm.get("resume").setValue(file);
     }
 

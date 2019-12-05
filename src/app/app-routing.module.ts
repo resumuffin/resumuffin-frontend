@@ -6,6 +6,9 @@ import { HelpComponent } from './help/help.component';
 import { TagsComponent } from './tags/tags.component';
 import { UsersComponent } from './users/users.component';
 import { LoginComponent } from './login/login.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ResultsComponent } from './results/results.component';
+import { DiscussionComponent } from './discussion/discussion.component';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 
@@ -16,7 +19,10 @@ const routes: Routes = [
   { path: "tags", component:TagsComponent},
   { path: "users", component: UsersComponent},
   { path: "login", component: LoginComponent},
-  { path: "register", component: RegisterComponent}
+  { path: "register", component: RegisterComponent},
+  { path: "profile", component: ProfileComponent},
+  { path: "results", component: ResultsComponent},
+  { path: "discussion", component: DiscussionComponent}
 ];
 
 @NgModule({

@@ -1,22 +1,22 @@
 import { Injectable } from '@angular/core';
- 
+
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class ResumeService {
 
   constructor() { }
-  
-  name = "";
 
-  setName(name)
+  id = "";
+
+  setId(id)
   {
-    this.name = name;
+    this.id = id;
   }
 
-  getName()
+  getId()
   {
-    return this.name;
+    return this.id;
   }
 
 }

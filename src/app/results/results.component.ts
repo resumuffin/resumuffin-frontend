@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ResumeService } from "../resume-service.service";
 
 @Component({
   selector: 'app-results',
@@ -7,7 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResultsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private resumeService: ResumeService) { }
+
+  setId(event){
+
+    var id = event.target.text;
+    this.resumeService.setId(id);
+
+  }
 
   ngOnInit() {
   }

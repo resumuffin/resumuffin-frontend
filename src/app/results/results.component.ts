@@ -13,7 +13,13 @@ export class ResultsComponent implements OnInit {
   setId(event){
 
     var id = event.target.text;
+
+    // using value of tag instead of tag text
+    // var id = event.target.value
+    // value="1" == value of resume as attribute of html tag
+
     this.resumeService.setId(id);
+    
     localStorage.setItem("id", id);
 
   }

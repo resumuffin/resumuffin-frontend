@@ -20,6 +20,7 @@ export class DiscussionComponent implements OnInit {
 
   ngOnInit() {
     var id = this.resumeService.getId();
+    
     id = localStorage.getItem("id"); 
     var idURL = this.springURL + id;
     this.http.get<any>(idURL).subscribe(

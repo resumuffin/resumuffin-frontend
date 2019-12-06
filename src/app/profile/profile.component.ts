@@ -13,15 +13,25 @@ export class ProfileComponent implements OnInit {
 
   springURL = "http://springuserandcomments-env.sfredvy8k7.us-west-1.elasticbeanstalk.com/users/getUserDetails/";
   userName = "";
+  email;
+  role;
 
   ngOnInit() {
     var name = this.userService.getName();
     var nameURL = this.springURL + name;
     this.http.get<any>(nameURL).subscribe(
-      (res) => console.log(res),
-      (err) => console.log(err)
+      data  => {
+        this.email = data.email;
+        this.role = data.role.name;
+        console.log("data",data);
+        this.setUpPage();
+        }
     );
     this.userName = name;
+  }
+
+  setUpPage() {
+
   }
 
 }

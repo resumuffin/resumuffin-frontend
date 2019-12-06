@@ -13,6 +13,8 @@ import { ResultsComponent } from './results/results.component';
 import { TagsComponent } from './tags/tags.component';
 import { UsersComponent } from './users/users.component';
 import { RegisterComponent } from './register/register.component';
+import { ProfileComponent } from './profile/profile.component';
+import { DiscussionComponent } from './discussion/discussion.component';
 
 
 
@@ -27,7 +29,9 @@ import { RegisterComponent } from './register/register.component';
     TagsComponent,
     UsersComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    ProfileComponent,
+    DiscussionComponent
   ],
   imports: [
     BrowserModule,

@@ -22,7 +22,7 @@
           tags and a description to your resumé post.</span>
         <br>
         <br>
-        <input name="resume" type="file" (change)="onSelectFile($event)">
+        <input name="resume" id="resume" type="file" (change)="onSelectFile($event)">
         <br>
         <br>
         <br>
@@ -46,7 +46,7 @@
         <br><br>
         <span id="descPrompt">Describe what aspect of your resumé you want users to comment on such as "Please check my grammar", "How should I list my experience?" or "How do I make my projects stand out?".</span>
         <br>
-        <textarea id="desc" rows="3"></textarea>
+        <textarea id="desc" name="desc" rows="3"></textarea>
         <br>
         <br>
         <div id="buttons">

@@ -14,6 +14,6 @@ export class AppComponent {
     }
     
     isLoggedIn(){
-      return (document.cookie.match(/^(?:.*;)?\s*resumuffin-frontend.s3-website-us-west-1.amazonaws.com\s*=\s*([^;]+)(?:.*)?$/)||[,0])[1];
+      return (document.cookie.match(/^(?:.*;)?\s*username-localhost-8888\s*=\s*([^;]+)(?:.*)?$/)||[,0])[1]
     }
 }

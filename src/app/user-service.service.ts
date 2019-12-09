@@ -25,4 +25,8 @@ export class UserService {
     return this.http.get(authenticate);
   }
 
+  register(email, username, password){
+    let register = "http://springuserandcomments-env.sfredvy8k7.us-west-1.elasticbeanstalk.com/users/addUser/"+email+"/"+username+"/"+password;
+    return this.http.get(register);
+  }
 }

@@ -21,7 +21,7 @@ export class UserService {
   }
 
   auth(username, password){
-    let authenticate = "http://springuserandcomments-env.sfredvy8k7.us-west-1.elasticbeanstalk.com/users/authenticate/" + "username" + "/" + "password";
+    let authenticate = "http://springuserandcomments-env.sfredvy8k7.us-west-1.elasticbeanstalk.com/users/authenticate/" + username + "/" + password;
     return this.http.get(authenticate);
   }
 

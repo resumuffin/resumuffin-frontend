@@ -16,11 +16,17 @@
     <div class="center">
       <h2> Tags </h2>
       <p>A tag is a keyword or label that categorizes your question with other, similar questions. Using the right tags makes it easier for others to find and answer your question. </p>
-      <ul *ngIf="tags">
+      <ul *ngIf="!out">
+          <p>yup</p>
+          <div *ngFor="let row of out">
+              <p class="tag">row</p>
+          </div>
+        </ul>
+      <!-- <ul *ngIf="tags">
         <li *ngFor="let tag of tags">
           <p class="tag">{{ tag.text }}</p>
         </li>
-      </ul>
+      </ul> -->
     </div>
   </div>
 </body>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +26,9 @@ export class UserService {
   }
 
   register(email, username, password){
-    let register = "http://springuserandcomments-env.sfredvy8k7.us-west-1.elasticbeanstalk.com/users/addUser/"+email+"/"+username+"/"+password;
-    return this.http.get(register);
+    const register = "http://springuserandcomments-env.sfredvy8k7.us-west-1.elasticbeanstalk.com/users/addUser/";
+    const config = { headers: new HttpHeaders().set('Content-Type', 'application/json') };
+    const postBody = JSON.stringify({"email": email,"username": username,"password": password})
+    return this.http.post<any>(register, postBody, config).subscribe();
   }
 }

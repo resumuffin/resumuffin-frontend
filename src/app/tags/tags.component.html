@@ -13,8 +13,9 @@
   </div>
 
   <div class="col-xl-7 mx-auto featured">
-    <div class="text-center">
-      <p>Possible Tags</p>
+    <div class="center">
+      <h2> Tags </h2>
+      <p>A tag is a keyword or label that categorizes your question with other, similar questions. Using the right tags makes it easier for others to find and answer your question. </p>
       <ul *ngIf="tags">
         <li *ngFor="let tag of tags">
           <p class="tag">{{ tag.text }}</p>

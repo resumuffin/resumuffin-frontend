@@ -9,9 +9,9 @@ export class ResumeService {
   constructor(private http: HttpClient) { }
 
   id = "";
-  // getTenResumes(){
-  //   return this.http.get('http://class-a.hekiyou.academy:9917/tag/get/all')
-  // }
+  getAllResumes(){
+    return this.http.get('http://springuserandcomments-env.sfredvy8k7.us-west-1.elasticbeanstalk.com/resume/get/all')
+  }
   setId(id)
   {
     this.id = id;

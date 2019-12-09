@@ -9,7 +9,7 @@ export class TagService {
 
   tag = "";
   getAllTags(){
-    return this.http.get('http://class-a.hekiyou.academy:9917/tag/get/all')
+    return this.http.get('http://springuserandcomments-env.sfredvy8k7.us-west-1.elasticbeanstalk.com/tag/get/all')
   }
   
   setTag(tag)

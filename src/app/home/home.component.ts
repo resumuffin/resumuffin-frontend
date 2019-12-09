@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
+import {
+  ResumeService
+} from '../resume-service.service';
 
 @Component({
   selector: 'app-home',
@@ -6,10 +12,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
-  constructor() { }
-
+  resumes: Object
+  constructor(private resumeService: ResumeService) {}
   ngOnInit() {
+    this.resumeService.getAllResumes().subscribe(data => {
+      this.resumes = data
+      console.log(this.resumes);
+    });
   }
 
 }

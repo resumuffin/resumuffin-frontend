@@ -11,10 +11,8 @@ export class TagsComponent implements OnInit {
   constructor(private tagService: TagService) { }
 
   setTag(event){
-
     var id = event.target.text;
     this.tagService.setTag(id);
-
   }
 
   ngOnInit() {

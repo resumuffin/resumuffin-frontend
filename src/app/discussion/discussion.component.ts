@@ -11,7 +11,7 @@ export class DiscussionComponent implements OnInit {
 
   constructor(private resumeService: ResumeService, private http: HttpClient) { }
 
-  springURL = "http://class-a.hekiyou.academy:9917/resume/get/"; // Resume endpoint
+  springURL = "http://springuserandcomments-env.sfredvy8k7.us-west-1.elasticbeanstalk.com/resume/get/"; // Resume endpoint
   resumeId = ""; // ID number of currently viewed resume
   resume; // Base64 resume data
   image; // Bool for whether data is image or pdf

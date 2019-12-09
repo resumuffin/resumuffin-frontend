@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-upload',
@@ -9,7 +10,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class UploadComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder, private http: HttpClient) { }
+  constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router) { }
 
   uploadForm: FormGroup;  
 
@@ -110,13 +111,21 @@ export class UploadComponent implements OnInit {
           console.log(formData.get("tags"));
           console.log(this.tagIDList);
 
+          var currentID;
+
           // Pass formData to upload endpoint
           this.http.post<any>(this.uploadURL, formData, { withCredentials: true}).subscribe(
-            (res) => console.log(res),
-            (err) => console.log(err)
+            (res) => {
+              currentID = res.id;
+              localStorage.setItem("id", currentID);
+            }
           );
 
         }, 3000);
+
+        setTimeout(() => {
+          this.router.navigate(['/discussion']);
+        }, 5000);
 
       }
     );    

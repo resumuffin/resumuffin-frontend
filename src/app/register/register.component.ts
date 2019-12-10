@@ -46,8 +46,8 @@ export class RegisterComponent implements OnInit {
             return;
         }
         this.loading = true;
-
-        if (this.userService.register(this.loginForm.get('email'), this.loginForm.get('username'), this.loginForm.get('password'))){
+        console.log(this.loginForm.get('email').value, this.loginForm.get('username').value, this.loginForm.get('password').value)
+        if (this.userService.register(this.loginForm.get('email').value, this.loginForm.get('username').value, this.loginForm.get('password').value)){
             setTimeout(() => {
                 this.router.navigate(['/login']);
             },

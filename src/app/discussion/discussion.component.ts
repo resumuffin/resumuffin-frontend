@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ResumeService } from '../resume-service.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-discussion',
@@ -12,6 +12,7 @@ export class DiscussionComponent implements OnInit {
   constructor(private resumeService: ResumeService, private http: HttpClient) { }
 
   springURL = "http://springuserandcomments-env.sfredvy8k7.us-west-1.elasticbeanstalk.com/resume/get/"; // Resume endpoint
+  commentURL = "http://springuserandcomments-env.sfredvy8k7.us-west-1.elasticbeanstalk.com/comment/createComment"; // Comment upload endpoint
   resumeId = ""; // ID number of currently viewed resume
   resume; // Base64 resume data
   image; // Bool for whether data is image or pdf
@@ -19,6 +20,10 @@ export class DiscussionComponent implements OnInit {
   resSrc = ""; // Data type + base64 data for element source
 
   ngOnInit() {
+    this.getResume();
+  }
+
+  getResume(){
     var id = this.resumeService.getId();
     
     id = localStorage.getItem("id"); 
@@ -49,6 +54,21 @@ export class DiscussionComponent implements OnInit {
       this.resSrc = "data:application/pdf;base64," + this.resume;
     }
     
+  }
+
+  addComment(comment){
+    var id = localStorage.getItem("id");
+    var config = { headers: new HttpHeaders()};
+    var numId = parseInt(id);
+    var params = JSON.stringify({"description": comment,"resumeId": numId});
+    config.headers.set('Content-Type', 'application/json');
+    config.headers.set('withCredentials', 'true');
+    console.log("id: " + numId);
+    console.log("comment: " + comment);
+    console.log("sending this: "+ params);
+    this.http.post<any>(this.commentURL, params, config).subscribe(
+      data  => console.log(data)
+    );
   }
 
 }

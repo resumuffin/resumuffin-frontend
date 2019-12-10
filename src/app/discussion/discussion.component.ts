@@ -26,7 +26,6 @@ export class DiscussionComponent implements OnInit {
   getResume(){
     var id = this.resumeService.getId();
     
-    id = localStorage.getItem("id"); 
     var idURL = this.springURL + id;
     this.http.get<any>(idURL).subscribe(
       data  => {
@@ -41,6 +40,21 @@ export class DiscussionComponent implements OnInit {
     this.resumeId = id;
   }
 
+  getHomepageResume(){
+    var id = this.resumeService.getId();
+    var idURL = this.springURL + id;
+    this.http.get<any>(idURL).subscribe(
+      data  => {
+        this.resume = data.data;
+        this.image = data.image;
+        this.tags = data.tags;
+        console.log("data",data);
+        this.setUpPage();
+        }
+      
+    );
+    this.resumeId = id;
+  }
   setUpPage(){
     this.resSrc = "";
     // Render page if resume is in image format

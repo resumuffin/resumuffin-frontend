@@ -18,7 +18,7 @@
       </div>
       <div class="card-body">
         <h5 class="card-title">{{ resume.description }}</h5>
-        <a routerLink="../discussion" class="btn btn-primary">View</a>
+        <button value="{{resume.id}}" class="btn btn-primary" (click)="setId($event)" style="background-color: blue">View</button>
       </div>
       <div class="card-footer text-muted">
         {{ resume.tags }}

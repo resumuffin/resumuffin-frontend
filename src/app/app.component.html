@@ -7,12 +7,20 @@
 
 <body>
   <header id="navBar">
-    <div id="title">
-      <a routerLink="">
-        <img id="logo"src="assets/img/logo.png">
-      </a>
+    <div class="navigation-bar">
+        <div id="navigation-container">
+            <img class="resize" src="https://raw.githubusercontent.com/resumuffin/media/master/logo.png">
+            <ul>
+              <!-- <li><input id="search"type="text" id="searchBar" placeholder="Search"></li> -->
+                <li><a *ngIf="isLoggedIn()" id="login" class="navButton" routerLink="/login">Profile</a></li>
+                <li><a *ngIf="!isLoggedIn()" id="login" class="navButton" routerLink="/login">Login</a></li>
+                <li><a id="post" class="navButton" href="#" routerLink="/upload">Post</a></li>
+                <li><a id="help" class="navButton" href="#" routerLink="/help">Help</a></li>
+            </ul>
+          </div>
+
     </div>
-    <div id="search">
+    <!-- <div id="search">
       <input type="text" id="searchBar" placeholder="Search">
     </div>
     <div id="navButtons">
@@ -22,7 +30,7 @@
       <button id="post" class="navButton" href="#" routerLink="/upload">Post</button>
       <div class="spacer"></div>
       <button id="help" class="navButton" href="#" routerLink="/help">Help</button>
-    </div>
+    </div> -->
   </header>
   <div>
     <router-outlet></router-outlet>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TagService } from '../tag-service.service'
+import { templateJitUrl } from '@angular/compiler';
 
 @Component({
   selector: 'app-tags',
@@ -8,6 +9,8 @@ import { TagService } from '../tag-service.service'
 })
 export class TagsComponent implements OnInit {
   tags: Object;
+  length: number;
+  out: Array<Array<any>>;
   constructor(private tagService: TagService) { }
 
   setTag(event){
@@ -19,8 +22,16 @@ export class TagsComponent implements OnInit {
     this.tagService.getAllTags().subscribe(data => {
       this.tags = data
       console.log(this.tags);
+      this.length = (Object.keys(this.tags).length);
+      var temp = [];
+      for (var i = 0; i < this.length; i++){
+        temp.push(this.tags[i].text)
+        if (i%5 == 0 && i != 0){
+          this.out.push(temp);
+          temp = [];
+        }
+      }
     }
     );
   }
-
 }

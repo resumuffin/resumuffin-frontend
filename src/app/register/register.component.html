@@ -1,1 +1,54 @@
-<p>register works!</p>
+<body>
+  <div class="col-xl-2">
+    <div class="card mx-auto bar left">
+      <div class="card-header">
+        Resumuffin
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><button class="side-nav" routerLink="/">Home</button></li>
+        <li class="list-group-item"><button class="side-nav" routerLink="/tags">Tags</button></li>
+        <li class="list-group-item"><button class="side-nav" routerLink="/users">Users</button></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="col-xl-4 mx-auto featured">
+    <div class="center">
+      <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+      <h2>Register</h2>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="username">Email</label>
+          <input type="text" formControlName="email" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+          <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+            <div *ngIf="f.email.errors.required">Email Address is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" formControlName="username" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+          <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+            <div *ngIf="f.username.errors.required">Username is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" formControlName="password" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <div *ngIf="f.password.errors.required">Password is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <button [disabled]="loading" class="btn btn-primary" type="submit">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Register
+          </button>
+          <a routerLink="/" class="btn btn-link">Home</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>

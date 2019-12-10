@@ -14,6 +14,6 @@ export class AppComponent {
     }
     
     isLoggedIn(){
-      return (document.cookie.match(/^(?:.*;)?\s*springuserandcomments-env.sfredvy8k7.us-west-1.elasticbeanstalk.com\s*=\s*([^;]+)(?:.*)?$/)||[,0])[1]
+      return (document.cookie.match(/^(?:.*;)?\s*username-localhost-8888\s*=\s*([^;]+)(?:.*)?$/)||[,0])[1]
     }
 }

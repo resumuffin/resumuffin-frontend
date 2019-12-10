@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
         }
         this.loading = true;
 
-        if (this.userService.auth("abcd", "password")){
+        if (this.userService.auth(this.loginForm.get('username').value, this.loginForm.get('password').value)){
             setTimeout(() => {
                 this.router.navigate(['/']);
             },

@@ -57,18 +57,20 @@ export class DiscussionComponent implements OnInit {
   }
 
   addComment(comment){
+    
     var id = localStorage.getItem("id");
-    var config = { headers: new HttpHeaders()};
+    var config = new HttpHeaders();
     var numId = parseInt(id);
     var params = JSON.stringify({"description": comment,"resumeId": numId});
-    config.headers.set('Content-Type', 'application/json');
-    config.headers.set('withCredentials', 'true');
-    console.log("id: " + numId);
-    console.log("comment: " + comment);
-    console.log("sending this: "+ params);
-    this.http.post<any>(this.commentURL, params, config).subscribe(
+    setTimeout(() => {
+      this.http.post<any>(this.commentURL, params, { 
+        headers: new HttpHeaders({'Content-Type': 'application/json'}),
+        withCredentials: true
+      }).subscribe(
       data  => console.log(data)
-    );
+      );
+    }, 500);
+    
   }
 
 }

@@ -15,10 +15,26 @@
     justify-content: center;
 }
 
-button {
+.side-nav {
+    background-color: Transparent;
     background-repeat:no-repeat;
     border: none;
     cursor:pointer;
     overflow: hidden;
     outline:none;
 }
+
+#resumeDiv2{
+    justify-content: center;
+}
+
+#resImg{
+    width: 100%;
+}
+
+.commentStyle{
+    border: 1px solid gray;
+    border-radius: 6px;
+    padding: 4px;
+}
+

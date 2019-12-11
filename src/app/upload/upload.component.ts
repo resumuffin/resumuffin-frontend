@@ -29,6 +29,8 @@ export class UploadComponent implements OnInit {
   tagIDSet = new Set();
   tagIDList = [];
 
+  waitMessage = false;
+
   test = false;
 
   ngOnInit() {
@@ -42,6 +44,8 @@ export class UploadComponent implements OnInit {
     var auth = "http://springuserandcomments-env.sfredvy8k7.us-west-1.elasticbeanstalk.com/users/authenticate/user1/password";
 
     var formData = new FormData();
+
+    this.waitMessage = true;
 
     // Gets resume/tags/title/description from template
     this.tags = event.target.tags.value;
@@ -121,11 +125,11 @@ export class UploadComponent implements OnInit {
             }
           );
 
-        }, 3000);
+        }, 1000);
 
         setTimeout(() => {
           this.router.navigate(['/discussion']);
-        }, 5000);
+        }, 1500);
 
       }
     );    

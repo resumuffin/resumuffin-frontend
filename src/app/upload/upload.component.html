@@ -50,7 +50,7 @@
         <div id="buttons">
             <button class="btn btn-success" id="upload" type="submit">Upload</button>
             <div class="spacer"></div>
-            <button class="btn btn-danger" id="cancel">Cancel</button>
+            <span id="waitMessage" [style.display]="waitMessage ? 'inline-block' : 'none'">Please wait to be redirected</span>
         </div>
       </div>
     </div>

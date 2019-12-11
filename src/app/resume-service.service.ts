@@ -15,6 +15,7 @@ export class ResumeService {
   setId(id)
   {
     this.id = id;
+    localStorage.setItem("id", id);
   }
 
   getId()

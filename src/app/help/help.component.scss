@@ -1,6 +1,5 @@
 body{
     width: 100%;
-    text-align: center;
 }
 
 .left {
@@ -18,6 +17,11 @@ body{
 
 .page-menu {
     justify-content: center;
+}
+
+#outerBody{
+    width: 100%;
+    display: flex;
 }
 
 #bodyDiv{

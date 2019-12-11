@@ -11,8 +11,10 @@ export class DiscussionComponent implements OnInit {
 
   constructor(private resumeService: ResumeService, private http: HttpClient) { }
 
-  springURL = "http://springuserandcomments-env.sfredvy8k7.us-west-1.elasticbeanstalk.com/resume/get/"; // Resume endpoint
+  resumeURL = "http://springuserandcomments-env.sfredvy8k7.us-west-1.elasticbeanstalk.com/resume/get/"; // Get resume endpoint
   commentURL = "http://springuserandcomments-env.sfredvy8k7.us-west-1.elasticbeanstalk.com/comment/createComment"; // Comment upload endpoint
+  threadURL = "http://springuserandcomments-env.sfredvy8k7.us-west-1.elasticbeanstalk.com/comment/getThread/"; // Get comments associated with resume endpoint
+  usernameURL = "http://springuserandcomments-env.sfredvy8k7.us-west-1.elasticbeanstalk.com/users/getUserDetailsById/"; // Get user info endpoint
   resumeId = ""; // ID number of currently viewed resume
   title = ""; // Title of resume
   description = ""; // Description of resume
@@ -22,21 +24,22 @@ export class DiscussionComponent implements OnInit {
   resSrc = ""; // Data type + base64 data for element source
   owner; // ID of user who uploaded resume
   ownerUsername; // Username of user who uploaded resume
-
   comments = []; // Stores all comments from db associated with current resume
-  threadURL = "http://springuserandcomments-env.sfredvy8k7.us-west-1.elasticbeanstalk.com/comment/getThread/";
-  usernameMap = new Map();
-  usernameURL = "http://springuserandcomments-env.sfredvy8k7.us-west-1.elasticbeanstalk.com/users/getUserDetailsById/";
+
 
   ngOnInit() {
     this.getResume();
   }
 
+  // Gets resume data from DB
   getResume(){
-    var id = localStorage.getItem("id");//this.resumeService.getId();
+    // Get resume ID from local storage
+    var id = localStorage.getItem("id");
     
-    var idURL = this.springURL + id;
+    // Create URL to get specific resume from DB
+    var idURL = this.resumeURL + id;
     this.http.get<any>(idURL).subscribe(
+      // Get resume data from DB return
       data  => {
         this.resume = data.data;
         this.image = data.image;
@@ -44,7 +47,8 @@ export class DiscussionComponent implements OnInit {
         this.title = data.title;
         this.description = data.description;
         this.owner = data.owner;
-        console.log("data",data);
+
+        // Set up page with resume data
         this.setUpPage();
         }
       
@@ -54,7 +58,7 @@ export class DiscussionComponent implements OnInit {
 
   getHomepageResume(){
     var id = this.resumeService.getId();
-    var idURL = this.springURL + id;
+    var idURL = this.resumeURL + id;
     this.http.get<any>(idURL).subscribe(
       data  => {
         this.resume = data.data;
@@ -67,43 +71,61 @@ export class DiscussionComponent implements OnInit {
     );
     this.resumeId = id;
   }
+
+  // Sets up page with dynamic data
   setUpPage(){
-    var comments2 = this.comments;
+    
     var holdComments = [];
     var holdUsernames = [];
+
+    // Create URL to get comments from specific resume
     var resumeThreadURL = this.threadURL + localStorage.getItem("id");
 
+    // Create URL to get username of user that uploaded resume
     var getOwnerUsernameURL = this.usernameURL + this.owner;
 
+    // HTTP call to get and store resume uploader username
     this.http.get<any>(getOwnerUsernameURL).subscribe(
       (data) => {
         this.ownerUsername = data.username;
       }
     );
 
+    // HTTP call to get comments from a certain resume ID
     this.http.get<any>(resumeThreadURL).subscribe(
       (data) => {
         holdComments = data;
-        //console.log("holdComments before shift:", holdComments);
+
+        // Shift comment array left by 1, removing first comment which is duplicate resume data
         holdComments.shift();
-        //console.log("holdComments after shift:", holdComments);
+
+        // Set comment array to left shifted comment array from DB
         this.comments = holdComments;
-        //console.log(this.comments);
         console.log(data);
       }
     );
+
+    // Delay get usernames from DB to make sure comments come from DB first 
     setTimeout(()=>{
+
+      // Iterate through comments and get username for uploader of each comment
       for (var i = 0; i < this.comments.length; i++)
       {
+
+        // Create URL to get specific username as comment poster ID
         var getUsernameURL = this.usernameURL + this.comments[i].userId;
-        console.log(getUsernameURL);
+
+        // HTTP call to get and store username for a comment in array
         this.http.get<any>(getUsernameURL).subscribe(
           (data) => {
             holdUsernames.push(data.username);
           }
         );
       }
+
+      // Delay set comment poster username to make sure usernames return from DB first
       setTimeout(()=>{
+        // Iterate through comments and set title attribute to username of poster
         for (var j = 0; j < this.comments.length; j++)
         {
           this.comments[j].title = holdUsernames[j];
@@ -111,16 +133,15 @@ export class DiscussionComponent implements OnInit {
       }, 300)
     }, 200);
 
-
-    this.comments = comments2;
-    //this.comments[i].title = data.username;
-
+    
     this.resSrc = "";
+
     // Render page if resume is in image format
     if (this.image)
     {
       this.resSrc = "data:image/png;base64," + this.resume;
     }
+
     // Render page if resume is in PDF format
     else
     {
@@ -129,19 +150,28 @@ export class DiscussionComponent implements OnInit {
     
   }
 
+  // Adds comment to current resume
   addComment(comment){
     
+    // Gets current resume ID from local storage
     var id = localStorage.getItem("id");
-    var config = new HttpHeaders();
+
+    // Makes string resume ID into numerical value
     var numId = parseInt(id);
+
+    // Make comment text and resume ID into JSON 
     var params = JSON.stringify({"description": comment,"resumeId": numId});
+
     setTimeout(() => {
+
+      // HTTP call to add comment to resume
       this.http.post<any>(this.commentURL, params, { 
         headers: new HttpHeaders({'Content-Type': 'application/json'}),
         withCredentials: true
       }).subscribe(
       data  => {
         console.log(data);
+        // Run page set up again to add new comment to current display
         this.setUpPage();
       }
       );

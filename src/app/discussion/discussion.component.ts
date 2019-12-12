@@ -15,6 +15,7 @@ export class DiscussionComponent implements OnInit {
   commentURL = "http://springuserandcomments-env.sfredvy8k7.us-west-1.elasticbeanstalk.com/comment/createComment"; // Comment upload endpoint
   threadURL = "http://springuserandcomments-env.sfredvy8k7.us-west-1.elasticbeanstalk.com/comment/getThread/"; // Get comments associated with resume endpoint
   usernameURL = "http://springuserandcomments-env.sfredvy8k7.us-west-1.elasticbeanstalk.com/users/getUserDetailsById/"; // Get user info endpoint
+  deleteCommentURL = "http://springuserandcomments-env.sfredvy8k7.us-west-1.elasticbeanstalk.com/comment/deleteComment/"; // Delete comment endpoint
   resumeId = ""; // ID number of currently viewed resume
   title = ""; // Title of resume
   description = ""; // Description of resume
@@ -26,8 +27,13 @@ export class DiscussionComponent implements OnInit {
   ownerUsername; // Username of user who uploaded resume
   comments = []; // Stores all comments from db associated with current resume
 
+  isAdmin; // Determines if currently logged in user is admin
 
   ngOnInit() {
+    if (localStorage.getItem("IS_ADMIN"))
+    {
+      this.isAdmin = true;
+    }
     this.getResume();
   }
 
@@ -177,6 +183,20 @@ export class DiscussionComponent implements OnInit {
       );
     }, 200);
     
+  }
+
+  deleteComment(event){
+    var commentToDelete = event.target.value;
+    var adminUserId = localStorage.getItem("USER_ID");
+
+    var deleteCommentIDURL = "http://springuserandcomments-env.sfredvy8k7.us-west-1.elasticbeanstalk.com/comment/deleteComment/" + commentToDelete + "/" + adminUserId;
+
+    this.http.get<any>(deleteCommentIDURL).subscribe(
+      data => {
+        this.setUpPage();
+      }
+    )
+
   }
 
 }

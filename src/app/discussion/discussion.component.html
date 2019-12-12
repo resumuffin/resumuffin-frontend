@@ -41,6 +41,7 @@
             <br>
             <span class="commentBody">{{comment.description}}</span>
             <br>
+            <button class="btn btn-danger" (click)="deleteComment($event)" value="{{comment.id}}" [style.display]="isAdmin ? 'flex' : 'none'">Delete</button>
           </div>
           <br>
         </div>

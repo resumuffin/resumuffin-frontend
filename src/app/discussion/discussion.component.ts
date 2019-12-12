@@ -113,26 +113,26 @@ export class DiscussionComponent implements OnInit {
 
     // Delay get usernames from DB to make sure comments come from DB first 
     setTimeout(()=>{
-
+			holdUsernames.length = this.comments.length;
+			console.log(holdUsernames);
       // Iterate through comments and get username for uploader of each comment
-      for (var i = 0; i < this.comments.length; i++)
+      for (let i = 0; i < this.comments.length; i++)
       {
-
         // Create URL to get specific username as comment poster ID
         var getUsernameURL = this.usernameURL + this.comments[i].userId;
 
         // HTTP call to get and store username for a comment in array
         this.http.get<any>(getUsernameURL).subscribe(
           (data) => {
-            holdUsernames.push(data.username);
+						holdUsernames[i] = data.username;
           }
         );
-      }
+			}
 
       // Delay set comment poster username to make sure usernames return from DB first
       setTimeout(()=>{
         // Iterate through comments and set title attribute to username of poster
-        for (var j = 0; j < this.comments.length; j++)
+        for (let j = 0; j < this.comments.length; j++)
         {
           this.comments[j].title = holdUsernames[j];
         }

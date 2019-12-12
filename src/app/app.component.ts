@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ApplicationRef } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -8,12 +8,23 @@ import { Component } from '@angular/core';
 
 export class AppComponent {
     title = 'finalproject';
-    constructor (){}
+    constructor (private ref: ApplicationRef){}
     ngOnInit() {
       
     }
     
-    isLoggedIn(){
-      return (document.cookie.match(/^(?:.*;)?\s*username-localhost-8888\s*=\s*([^;]+)(?:.*)?$/)||[,0])[1]
-    }
+    isLoggedIn() {
+      return localStorage.getItem("USERNAME");
+		}
+
+		logout() {
+			localStorage.clear();
+			sessionStorage.clear();
+			this.ref.tick();
+		}
+
+		getUsername() {
+			let username = localStorage.getItem("USERNAME");
+			return username ? username : "";
+		}
 }

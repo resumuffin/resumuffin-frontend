@@ -46,4 +46,8 @@ export class UserService {
   getThreads(){
     return this.http.get("http://springuserandcomments-env.sfredvy8k7.us-west-1.elasticbeanstalk.com/comment/get/user/"+localStorage.getItem("USER_ID"));
   }
+
+  getUsers(){
+    return this.http.get('http://springuserandcomments-env.sfredvy8k7.us-west-1.elasticbeanstalk.com/users/get/all');
+  }
 }

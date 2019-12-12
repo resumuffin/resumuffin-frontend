@@ -23,3 +23,14 @@ button {
     overflow: hidden;
     outline:none;
 }
+
+td{
+    border-bottom: 1px solid;
+    border-bottom-color: rgb(10, 10, 10);
+}
+
+th{
+    border-right-width:medium;
+    width: 25%;
+    border-bottom: 2px solid black;
+}

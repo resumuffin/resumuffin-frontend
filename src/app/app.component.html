@@ -8,8 +8,7 @@
 <body>
   <header id="navBar">
     <div class="navigation-bar">
-      <a routerLink="/"><img class="resize"
-          src="https://raw.githubusercontent.com/resumuffin/media/master/logo.png"></a>
+      <a routerLink="/"><img class="resize" src="https://raw.githubusercontent.com/resumuffin/media/master/logo.png"></a>
       <ul>
         <li *ngIf="isLoggedIn()" id="nav-username">{{getUsername()}}</li>
         <li><a *ngIf="isLoggedIn()" class="navButton" routerLink="/profile">Profile</a></li>

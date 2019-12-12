@@ -50,7 +50,7 @@ export class DiscussionComponent implements OnInit {
   getResume(){
     // Get resume ID from local storage
     var id = localStorage.getItem("id");
-    
+    console.log(id);
     // Create URL to get specific resume from DB
     var idURL = this.resumeURL + id;
     this.http.get<any>(idURL).subscribe(
@@ -103,6 +103,8 @@ export class DiscussionComponent implements OnInit {
     this.http.get<any>(getOwnerUsernameURL).subscribe(
       (data) => {
         this.ownerUsername = data.username;
+        console.log(this.owner);
+        console.log(data.username);
       }
     );
 

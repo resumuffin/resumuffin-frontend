@@ -30,11 +30,11 @@
         <br>
         <hr>
         <h3>Comments</h3>
-        <textarea #comment id="commentBox" rows="3" style="width: 100%"></textarea>
+        <textarea [style.display]="loggedIn ? 'flex' : 'none'" #comment id="commentBox" rows="3" style="width: 100%"></textarea>
         <br>
-        <button class="btn btn-success" id="commentButton" (click)="addComment(comment.value)">Add Comment</button>
+        <button [style.display]="loggedIn ? 'flex' : 'none'" class="btn btn-success" id="commentButton" (click)="addComment(comment.value)">Add Comment</button>
         <br>
-        <br>
+        <br> 
         <div class="comment" *ngFor="let comment of comments">
           <div class="commentStyle">
             <span class="username"><strong>{{comment.title}}</strong></span>

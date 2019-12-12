@@ -28,8 +28,17 @@ export class DiscussionComponent implements OnInit {
   comments = []; // Stores all comments from db associated with current resume
 
   isAdmin; // Determines if currently logged in user is admin
+  loggedIn;
 
   ngOnInit() {
+    if(localStorage.getItem("USERNAME"))
+    {
+      this.loggedIn = true;
+    }
+    else
+    {
+      this.loggedIn = false;
+    }
     if (localStorage.getItem("IS_ADMIN"))
     {
       this.isAdmin = true;

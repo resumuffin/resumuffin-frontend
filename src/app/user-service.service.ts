@@ -22,13 +22,12 @@ export class UserService {
 
   auth(username, password){
     let authenticate = "http://springuserandcomments-env.sfredvy8k7.us-west-1.elasticbeanstalk.com/users/authenticate/" + username + "/" + password;
-		return this.http.get(authenticate).subscribe(
+		return this.http.get(authenticate, { withCredentials: true}).subscribe(
 			data => {
 				if(data["username"]){
 					localStorage.setItem("USERNAME", data["username"]);
 					localStorage.setItem("USER_ID", data["id"]);
 				}
-				console.log(data["role"])
 				if(data["role"]["delete_COMMENTS"]) {
 					localStorage.setItem("IS_ADMIN", "true");
 				}

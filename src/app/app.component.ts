@@ -22,4 +22,9 @@ export class AppComponent {
 			sessionStorage.clear();
 			this.ref.tick();
 		}
+
+		getUsername() {
+			let username = localStorage.getItem("USERNAME");
+			return username ? username : "";
+		}
 }

@@ -9,12 +9,13 @@
   <header id="navBar">
     <div class="navigation-bar">
         <div id="navigation-container">
-            <img class="resize" src="https://raw.githubusercontent.com/resumuffin/media/master/logo.png">
+            <a routerLink="/"><img class="resize" src="https://raw.githubusercontent.com/resumuffin/media/master/logo.png"></a>
             <ul>
               <!-- <li><input id="search"type="text" id="searchBar" placeholder="Search"></li> -->
                 <li><a *ngIf="isLoggedIn()" id="login" class="navButton" routerLink="/login">Profile</a></li>
                 <li><a *ngIf="!isLoggedIn()" id="login" class="navButton" routerLink="/login">Login</a></li>
-                <li><a id="post" class="navButton" href="#" routerLink="/upload">Post</a></li>
+                <li><a *ngIf="isLoggedIn()" (click)="logout()" id="logout" routerLink="/" class="navButton">Logout</a></li>
+                <li><a *ngIf="isLoggedIn()" id="post" class="navButton" href="#" routerLink="/upload">Post</a></li>
                 <li><a id="help" class="navButton" href="#" routerLink="/help">Help</a></li>
             </ul>
           </div>

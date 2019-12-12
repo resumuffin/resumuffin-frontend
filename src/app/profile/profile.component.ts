@@ -11,7 +11,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(private userService: UserService, private http: HttpClient) { }
 
-  springURL = "http://springuserandcomments-env.sfredvy8k7.us-west-1.elasticbeanstalk.com/users/getUserDetails/";
+  springURL = "http://springuserandcomments-env.sfredvy8k7.us-west-1.elasticbeanstalk.com/users/getUserDetailsByName/";
   userName = "";
   email;
   role;
@@ -23,7 +23,6 @@ export class ProfileComponent implements OnInit {
       data  => {
         this.email = data.email;
         this.role = data.role.name;
-        console.log("data",data);
         this.setUpPage();
         }
     );

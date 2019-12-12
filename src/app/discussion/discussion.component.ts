@@ -80,7 +80,7 @@ export class DiscussionComponent implements OnInit {
 
   // Sets up page with dynamic data
   setUpPage(){
-    
+    this.comments = [];
     var holdComments = [];
     var holdUsernames = [];
 
@@ -187,12 +187,12 @@ export class DiscussionComponent implements OnInit {
 
   deleteComment(event){
     var commentToDelete = event.target.value;
-    var adminUserId = localStorage.getItem("USER_ID");
 
-    var deleteCommentIDURL = "http://springuserandcomments-env.sfredvy8k7.us-west-1.elasticbeanstalk.com/comment/deleteComment/" + commentToDelete + "/" + adminUserId;
-
-    this.http.get<any>(deleteCommentIDURL).subscribe(
-      data => {
+    var deleteCommentIDURL = "http://springuserandcomments-env.sfredvy8k7.us-west-1.elasticbeanstalk.com/comment/deleteComment/" + commentToDelete;
+    console.log(deleteCommentIDURL);
+    this.http.delete<any>(deleteCommentIDURL, {withCredentials: true}).subscribe(
+      (data) => {
+        console.log(data);
         this.setUpPage();
       }
     )

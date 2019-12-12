@@ -28,9 +28,11 @@ export class DiscussionComponent implements OnInit {
   comments = []; // Stores all comments from db associated with current resume
 
   isAdmin; // Determines if currently logged in user is admin
-  loggedIn;
+  loggedIn; // Determines if user is currently logged in
 
   ngOnInit() {
+
+    // Get username for currently logged in user
     if(localStorage.getItem("USERNAME"))
     {
       this.loggedIn = true;
@@ -39,6 +41,8 @@ export class DiscussionComponent implements OnInit {
     {
       this.loggedIn = false;
     }
+
+    // Get credentials for currently logged in user
     if (localStorage.getItem("IS_ADMIN"))
     {
       this.isAdmin = true;
@@ -64,22 +68,6 @@ export class DiscussionComponent implements OnInit {
         this.owner = data.owner;
 
         // Set up page with resume data
-        this.setUpPage();
-        }
-      
-    );
-    this.resumeId = id;
-  }
-
-  getHomepageResume(){
-    var id = this.resumeService.getId();
-    var idURL = this.resumeURL + id;
-    this.http.get<any>(idURL).subscribe(
-      data  => {
-        this.resume = data.data;
-        this.image = data.image;
-        this.tags = data.tags;
-        console.log("data",data);
         this.setUpPage();
         }
       
@@ -196,11 +184,16 @@ export class DiscussionComponent implements OnInit {
     
   }
 
+  // Function to delete comment if user is admin
   deleteComment(event){
+
+    // Get ID of comment to delete
     var commentToDelete = event.target.value;
 
-    var deleteCommentIDURL = "http://springuserandcomments-env.sfredvy8k7.us-west-1.elasticbeanstalk.com/comment/deleteComment/" + commentToDelete;
-    console.log(deleteCommentIDURL);
+    // URL to delete comment by specific ID
+    var deleteCommentIDURL = this.deleteCommentURL + commentToDelete;
+
+    // HTTP call to delete comment and set page up again with all comments for current resume
     this.http.delete<any>(deleteCommentIDURL, {withCredentials: true}).subscribe(
       (data) => {
         console.log(data);

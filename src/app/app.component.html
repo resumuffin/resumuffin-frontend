@@ -13,7 +13,7 @@
             <ul>
               <!-- <li><input id="search"type="text" id="searchBar" placeholder="Search"></li> -->
                 <li *ngIf="isLoggedIn()" id="nav-username">{{getUsername()}}</li>
-                <li><a *ngIf="isLoggedIn()" id="login" class="navButton" routerLink="/login">Profile</a></li>
+                <li><a *ngIf="isLoggedIn()" id="login" class="navButton" routerLink="/profile">Profile</a></li>
                 <li><a *ngIf="!isLoggedIn()" id="login" class="navButton" routerLink="/login">Login</a></li>
                 <li><a *ngIf="isLoggedIn()" (click)="logout()" id="logout" routerLink="/" class="navButton">Logout</a></li>
                 <li><a *ngIf="isLoggedIn()" id="post" class="navButton" href="#" routerLink="/upload">Post</a></li>

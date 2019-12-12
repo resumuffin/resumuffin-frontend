@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user-service.service';
 import {HttpClient } from '@angular/common/http';
+import { ResumeService } from '../resume-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -9,15 +11,20 @@ import {HttpClient } from '@angular/common/http';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private userService: UserService, private http: HttpClient) { }
+  constructor(private userService: UserService, private resumeService: ResumeService, private http: HttpClient, private router: Router) { }
 
   springURL = "http://springuserandcomments-env.sfredvy8k7.us-west-1.elasticbeanstalk.com/users/getUserDetailsByName/";
   userName = "";
   email;
   role;
+  threads;
 
   ngOnInit() {
-    var name = this.userService.getName();
+    this.userService.getThreads().subscribe(data => {
+      this.threads = data;
+      console.log(this.threads);
+    })
+    var name = localStorage.getItem("USERNAME");
     var nameURL = this.springURL + name;
     this.http.get<any>(nameURL).subscribe(
       data  => {
@@ -27,6 +34,15 @@ export class ProfileComponent implements OnInit {
         }
     );
     this.userName = name;
+  }
+
+  setId(event){
+    this.resumeService.setId(event.target.value);
+    console.log(event.target.value)
+    setTimeout(() => {
+      this.router.navigate(['../discussion']);
+    },
+    1500);
   }
 
   setUpPage() {

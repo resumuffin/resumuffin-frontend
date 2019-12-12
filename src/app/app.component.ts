@@ -14,17 +14,17 @@ export class AppComponent {
     }
     
     isLoggedIn() {
-      return localStorage.getItem("USERNAME");
-		}
+		return localStorage.getItem("USERNAME");
+	}
 
-		logout() {
-			localStorage.clear();
-			sessionStorage.clear();
-			this.ref.tick();
-		}
+	logout() {
+		localStorage.clear();
+		sessionStorage.clear();
+		this.ref.tick();
+	}
 
-		getUsername() {
-			let username = localStorage.getItem("USERNAME");
-			return username ? username : "";
-		}
+	getUsername() {
+		let username = localStorage.getItem("USERNAME");
+		return username ? username : "";
+	}
 }

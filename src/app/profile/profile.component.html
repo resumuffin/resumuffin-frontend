@@ -17,7 +17,17 @@
       <hr>
       <h4>Email: {{email}}</h4>
       <h4>Role: {{role}}</h4>
-      
+      <h4 class="text-center">Posts</h4>
+      <div class="card standard text-center" *ngFor="let thread of threads">
+        <div class="card-header">
+          {{ thread.title }}
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{ thread.description }}</h5>
+          <button value="{{thread.resumeId}}" class="btn btn-primary" (click)="setId($event)" style="background-color: blue">View</button>
+        </div>
+      </div>
     </div>
+
   </div>   
 </body>

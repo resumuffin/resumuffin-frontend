@@ -41,5 +41,9 @@ export class UserService {
     const config = { headers: new HttpHeaders().set('Content-Type', 'application/json') };
     const postBody = JSON.stringify({"email": email,"username": username,"password": password})
     return this.http.post<any>(register, postBody, config).subscribe();
-	}
+  }
+  
+  getThreads(){
+    return this.http.get("http://springuserandcomments-env.sfredvy8k7.us-west-1.elasticbeanstalk.com/comment/get/user/"+localStorage.getItem("USER_ID"));
+  }
 }

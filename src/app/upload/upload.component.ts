@@ -40,9 +40,7 @@ export class UploadComponent implements OnInit {
   }
 
   onSubmit(event: any){
-
-    var auth = "http://springuserandcomments-env.sfredvy8k7.us-west-1.elasticbeanstalk.com/users/authenticate/user1/password";
-
+    
     var formData = new FormData();
 
     this.waitMessage = true;
@@ -89,12 +87,6 @@ export class UploadComponent implements OnInit {
         {
           this.tagMap.set(this.tagDict[i].text, this.tagDict[i].id);
         }
-
-        setTimeout(() => {
-          this.http.get<any>(auth, { withCredentials: true}).subscribe(
-            (res) => console.log(res)
-          );  
-        }, 1);
 
         setTimeout(() => {
           this.createNewTags();

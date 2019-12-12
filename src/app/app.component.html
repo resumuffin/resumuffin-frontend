@@ -8,32 +8,18 @@
 <body>
   <header id="navBar">
     <div class="navigation-bar">
-        <div id="navigation-container">
-            <a routerLink="/"><img class="resize" src="https://raw.githubusercontent.com/resumuffin/media/master/logo.png"></a>
-            <ul>
-              <!-- <li><input id="search"type="text" id="searchBar" placeholder="Search"></li> -->
-                <li *ngIf="isLoggedIn()" id="nav-username">{{getUsername()}}</li>
-                <li><a *ngIf="isLoggedIn()" id="login" class="navButton" routerLink="/profile">Profile</a></li>
-                <li><a *ngIf="!isLoggedIn()" id="login" class="navButton" routerLink="/login">Login</a></li>
-                <li><a *ngIf="isLoggedIn()" (click)="logout()" id="logout" routerLink="/" class="navButton">Logout</a></li>
-                <li><a *ngIf="isLoggedIn()" id="post" class="navButton" href="#" routerLink="/upload">Post</a></li>
-                <li><a id="help" class="navButton" href="#" routerLink="/help">Help</a></li>
-                
-            </ul>
-          </div>
-
+      <a routerLink="/"><img class="resize"
+          src="https://raw.githubusercontent.com/resumuffin/media/master/logo.png"></a>
+      <ul>
+        <li *ngIf="isLoggedIn()" id="nav-username">{{getUsername()}}</li>
+        <li><a *ngIf="isLoggedIn()" class="navButton" routerLink="/profile">Profile</a></li>
+        <li><a *ngIf="!isLoggedIn()" id="login" class="navButton" routerLink="/login">Login</a></li>
+        <li><a *ngIf="!isLoggedIn()" id="login" class="navButton" routerLink="/register">Register</a></li>
+        <li><a *ngIf="isLoggedIn()" (click)="logout()" id="logout" routerLink="/" class="navButton">Logout</a></li>
+        <li><a *ngIf="isLoggedIn()" id="post" class="navButton" href="#" routerLink="/upload">Post</a></li>
+        <li><a id="help" class="navButton" href="#" routerLink="/help">Help</a></li>
+      </ul>
     </div>
-    <!-- <div id="search">
-      <input type="text" id="searchBar" placeholder="Search">
-    </div>
-    <div id="navButtons">
-      <button *ngIf="isLoggedIn()" id="login" class="navButton" routerLink="/login">Profile</button>
-      <button *ngIf="!isLoggedIn()" id="login" class="navButton" routerLink="/login">Login</button>
-      <div class="spacer"></div>
-      <button id="post" class="navButton" href="#" routerLink="/upload">Post</button>
-      <div class="spacer"></div>
-      <button id="help" class="navButton" href="#" routerLink="/help">Help</button>
-    </div> -->
   </header>
   <div>
     <router-outlet></router-outlet>

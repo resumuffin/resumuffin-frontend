@@ -12,13 +12,14 @@
     </div>
   </div>
   <div class="col-xl-7 mx-auto featured">
+    <h1 style="text-align: center;">Browse Recent Resumes</h1>
     <div class="card standard text-center" *ngFor="let resume of resumes">
       <div class="card-header">
         {{ resume.title }}
       </div>
       <div class="card-body">
         <h5 class="card-title">{{ resume.description }}</h5>
-        <button value="{{resume.id}}" class="btn btn-primary" (click)="setId($event)" style="background-color: blue">View</button>
+        <button value="{{resume.id}}" class="btn btn-primary" (click)="setId($event)" style="background-color: rgb(0, 109, 215)">View</button>
       </div>
       <div class="card-footer text-muted">
         {{ resume.tags }}

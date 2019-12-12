@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
 
         if (this.userService.auth(this.loginForm.get('username').value, this.loginForm.get('password').value)){
             setTimeout(() => {
-                this.router.navigate(['/']);
+                this.router.navigate([this.returnUrl]);
             },
             1500);
         }

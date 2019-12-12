@@ -20,6 +20,8 @@
       <div class="card-body">
         <h5 class="card-title">{{ resume.description }}</h5>
         <button value="{{resume.id}}" class="btn btn-primary" (click)="setId($event)" style="background-color: rgb(0, 109, 215)">View</button>
+        <div class="spacer" [style.display]="isAdmin ? 'inline-block' : 'none'"></div>
+        <button value="{{resume.id}}" [style.display]="isAdmin ? 'inline-block' : 'none'" class="btn btn-danger" (click)="deleteResume($event)" style="background-color: rgb(198, 29, 50)">Delete</button>
       </div>
       <div class="card-footer text-muted">
         {{ resume.tags }}

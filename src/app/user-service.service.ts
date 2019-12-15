@@ -22,14 +22,15 @@ export class UserService {
 
   auth(username, password){
 		let params = JSON.stringify({"username":username, "password":password});
-    let authenticate = "http://springuserandcomments-env.sfredvy8k7.us-west-1.elasticbeanstalk.com/users/authenticate";
-		return this.http.post(authenticate, params, { withCredentials: true}).subscribe(
+    let authenticate = "http://springuserandcomments-env.sfredvy8k7.us-west-1.elasticbeanstalk.com/users/authenticate/";
+		return this.http.post(authenticate, params, {headers: new HttpHeaders({'Content-Type': 'application/json'}), withCredentials: true}).subscribe(
 			data => {
+				console.log(data);
 				if(data["username"]){
 					localStorage.setItem("USERNAME", data["username"]);
 					localStorage.setItem("USER_ID", data["id"]);
 				}
-				if(data["role"]["delete_COMMENTS"]) {
+				if(data["role"]["canDeleteComments"]) {
 					localStorage.setItem("IS_ADMIN", "true");
 				}
 				this.ref.tick();

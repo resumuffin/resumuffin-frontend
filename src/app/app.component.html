@@ -14,7 +14,7 @@
         <li><a *ngIf="isLoggedIn()" class="navButton" routerLink="/profile">Profile</a></li>
         <li><a *ngIf="!isLoggedIn()" id="login" class="navButton" routerLink="/login">Login</a></li>
         <li><a *ngIf="!isLoggedIn()" id="login" class="navButton" routerLink="/register">Register</a></li>
-        <li><a *ngIf="isLoggedIn()" (click)="logout()" id="logout" routerLink="/" class="navButton">Logout</a></li>
+        <li><a *ngIf="isLoggedIn()" (click)="logout()" id="logout" routerLink="/login" class="navButton">Logout</a></li>
         <li><a *ngIf="isLoggedIn()" id="post" class="navButton" href="#" routerLink="/upload">Post</a></li>
         <li><a id="help" class="navButton" href="#" routerLink="/help">Help</a></li>
       </ul>
